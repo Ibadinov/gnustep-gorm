@@ -1,7 +1,19 @@
 # Additional include directories the compiler should search
 ADDITIONAL_INCLUDE_DIRS += -I../..
 
+SHOULD_LINK = "no"
+
 ifeq ($(GNUSTEP_TARGET_OS),mingw32)
+    SHOULD_LINK = "yes"
+endif
+ifeq ($(findstring darwin, $(GNUSTEP_TARGET_OS)), darwin)
+    SHOULD_LINK = "yes"
+endif
+ifeq ($(GNUSTEP_TARGET_OS),cygwin)
+    SHOULD_LINK = "yes"
+endif
+
+ifeq ($(SHOULD_LINK),"yes")
 ADDITIONAL_LIB_DIRS += \
         -L../../GormLib/$(GNUSTEP_OBJ_DIR) \
         -L../../GormObjCHeaderParser/$(GNUSTEP_OBJ_DIR) \
@@ -9,13 +21,4 @@ ADDITIONAL_LIB_DIRS += \
         -L../../GormCore/$(GNUSTEP_OBJ_DIR)
 
 ADDITIONAL_GUI_LIBS += -lGorm -lGormCore
-endif
-ifeq ($(GNUSTEP_TARGET_OS),cygwin)
-ADDITIONAL_LIB_DIRS += \
-        -L../../GormLib/$(GNUSTEP_OBJ_DIR) \
-        -L../../GormObjCHeaderParser/$(GNUSTEP_OBJ_DIR) \
-        -L../../GormPrefs/$(GNUSTEP_OBJ_DIR) \
-        -L../../GormCore/$(GNUSTEP_OBJ_DIR)
-
-1Windows_LIBRARIES_DEPEND_UPON += -lGorm -lGormCore
 endif

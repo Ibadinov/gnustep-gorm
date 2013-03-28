@@ -243,7 +243,7 @@
 #define MAX(A,B) ((A)>(B)?(A):(B))
 #define MIN(A,B) ((A)<(B)?(A):(B))
 
-int _sortViews(id view1, id view2, void *context)
+NSComparisonResult _sortViews(id view1, id view2, void *context)
 {
   BOOL isVertical = *((BOOL *)context);
   int order = NSOrderedSame;

@@ -163,7 +163,7 @@
   _view = view;
 
   [[self contentView] addSubview: _view];
-  DESTROY(_delegate);
+  [self setDelegate:nil];
   [self setDelegate: [[GormViewWindowDelegate alloc] initWithView: _view]];
 }
 
@@ -204,7 +204,7 @@
 
 - (void) dealloc
 {
-  DESTROY(_delegate);
+  [self setDelegate:nil];
   [super dealloc];
 }
 

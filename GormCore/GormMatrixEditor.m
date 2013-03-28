@@ -51,12 +51,12 @@
 @end
 
 @interface NSForm (GormAdditions)
-- (float) titleWidth;
+- (CGFloat) titleWidth;
 @end
 
 @implementation NSForm (GormAdditions)
 
-- (float)titleWidth
+- (CGFloat)titleWidth
 {
   int i, count = [self numberOfRows];
   float new_title_width = 0;
